@@ -6,7 +6,7 @@ from totomodul import ustawienia, losujliczby, pobierztypy
 
 def main(args):
     # ustawienia gry
-    ileliczb, maksliczba, ilerazy = ustawienia()
+    nick, ileliczb, maksliczba, ilerazy = ustawienia()
 
     # losujemy liczby
     liczby = losujliczby(ileliczb, maksliczba)
@@ -15,7 +15,7 @@ def main(args):
     for i in range(ilerazy):
         typy = pobierztypy(ileliczb, maksliczba)
         iletraf = wyniki(set(liczby), typy)    
-        
+
     print("Wylosowane licby: ", liczby)
     return 0
 
