@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 
 from totomodul import ustawienia, losujliczby, pobierztypy
+from totomodul import czytaj_json, zapisz_json
+import time
 
 
 def main(args):
@@ -14,9 +16,23 @@ def main(args):
     # pobieramy typy użytkownika i sprawdzamy ile liczb trafił
     for i in range(ilerazy):
         typy = pobierztypy(ileliczb, maksliczba)
-        iletraf = wyniki(set(liczby), typy)    
+        iletraf = wyniki(set(liczby), typy)
+    
+    nazwapliku = nick + ".json" # nazwa pliku z historią losowań
+    losowania = czytaj_json(nazwapliku)
+    
 
-    print("Wylosowane licby: ", liczby)
+
+    losowania.append({
+        "czas": time.time(),
+        "dane": (ileliczb, maksliczba),
+        "wylosowane": liczby,
+        "ile": iletraf
+    })
+
+    zapisz_json(nazwapliku, losowania)
+    
+    print("\nLosowania: ", liczby)
     return 0
 
 def wyniki(liczby, typy):
@@ -33,11 +49,6 @@ def wyniki(liczby, typy):
     print("\n" + "X" * 40 + "\n") # wydruk linii odzielającej z XXXX
 
     return len(trafione)
-
-
-
-
-
 
 
 if __name__ == '__main__':

@@ -3,7 +3,7 @@
 
 import random
 import os
-
+import json
 
 def ustawienia():
     """Funkcja pobiera nick użytkownika, ilość losowych liczb, maksymalną losowaną wartość
@@ -81,6 +81,51 @@ def pobierztypy(ile, maks):
             typy.add(typ)
             i = i + 1
     return typy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def czytaj_json(nazwapliku):
+    """Funkcja odczytujedane w formaie json z pliku"""
+    dane = []
+    if os.path.isfile(nazwapliku):
+        with open(nazwapliku, "r") as plik:
+            dane = json.load(plik)
+    return dane
+
+
+def zapisz_json(nazwapliku, dane):
+    """Funkcja zapisuje dane  formacie json do pliku"""
+    with open(nazwapliku, "w") as plik:
+        json.dump(dane, plik)
+
+
+
+
+
+def zapisz_str(nazwapliku, dane):
+    """Funkcja zapisujedane w formacie txt do pliku"""
+    with open(nazwapliku, "w") as plik:
+        for slownik in dane:
+            linia = [k + ":" + str(w) for k, w in slownik.iteritems()]
+            linia = ";".join(linia)
+            # plik.write(linia+"\n") -zamiast tak, można:
+            print>>plik, linia
+
 
 
 
