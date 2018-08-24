@@ -56,8 +56,8 @@ def zapisz_ust(nazwapliku, gracz):
 
 def losujliczby(ile, maks):
     """Funkcja losuje ile unikalnych liczb całkowitych od 1 do maks"""
-    liczby= []
-    i =0
+    liczby = []
+    i = 0
     while i < ile:
         liczba = random.randint(1, maks)
         if liczby.count(liczba) == 0:
@@ -118,13 +118,22 @@ def zapisz_json(nazwapliku, dane):
 
 
 def zapisz_str(nazwapliku, dane):
-    """Funkcja zapisujedane w formacie txt do pliku"""
+    """Funkcja zapisuje dane w formacie txt do pliku"""
     with open(nazwapliku, "w") as plik:
         for slownik in dane:
-            linia = [k + ":" + str(w) for k, w in slownik.iteritems()]
-            linia = ";".join(linia)
-            # plik.write(linia+"\n") -zamiast tak, można:
-            print>>plik, linia
+            linia = str(slownik)
+            #linia = ";".join(linia)
+            plik.write(linia+"\n") #-zamiast tak, można:
+            #print>>plik, linia
+
+
+def czytaj_str(nazwapliku):
+    """Funkcja odczytuje słowniki z plikutekstowego"""
+    dane = []
+    if os.path.isfile(nazwapliku):
+        with open(nazwapliku, "r") as plik:
+            dane = plik
+    return dane
 
 
 

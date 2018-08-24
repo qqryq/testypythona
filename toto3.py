@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from totomodul import ustawienia, losujliczby, pobierztypy
-from totomodul import czytaj_json, zapisz_json
+from totomodul import czytaj_json, zapisz_json, zapisz_str, czytaj_str
 import time
 
 
@@ -20,18 +20,26 @@ def main(args):
     
     nazwapliku = nick + ".json" # nazwa pliku z historią losowań
     losowania = czytaj_json(nazwapliku)
-    
-
-
     losowania.append({
         "czas": time.time(),
         "dane": (ileliczb, maksliczba),
         "wylosowane": liczby,
         "ile": iletraf
     })
-
     zapisz_json(nazwapliku, losowania)
     
+    nazwaplikustr = nick + "_test.txt" # nazwa pliku dla zapisu tekstowego słowników
+    losowania2 = czytaj_str(nazwaplikustr)
+    losowania2.append({
+        "czas": time.time(),
+        "dane": (ileliczb, maksliczba),
+        "wylosowane": liczby,
+        "ile": iletraf
+    })
+    zapisz_str(nazwaplikustr, losowania)
+    
+
+
     print("\nLosowania: ", liczby)
     return 0
 
